@@ -10,7 +10,7 @@ echo ""
 echo ""
 
 echo "Testing to ensure the Arise site built the test suite page..."
-if [ -f $testpage ] 
+if [ -f "$testpage"" ] 
 then
         echo "SUCCESS!"
 else
@@ -24,7 +24,7 @@ echo ""
 
 echo "Testing to ensure that the title is rendering as it should..."
 titletest="<title>CI Test Suite - XML Reserved Characters &#38; &#60; &#62; &#39; &#34;"
-if [[ $(grep "$titletest" $testpage) ]]
+if [[ $(grep "$titletest" "$testpage") ]]
 then
         echo "SUCCESS!"
 else
@@ -34,14 +34,14 @@ else
         echo "$titletest"
         echo "==========="
         echo "Full line that contains a discrepancy:"
-        echo "$(grep '<title>' $testpage | head -1)"
+        echo "$(grep '<title>' "$testpage" | head -1)"
         exit 1
 fi
 echo ""
 
 echo "Testing to ensure that the author is rendering as they should..."
 authortest='<meta name="author" content="Spectra Secure &#38; &#60; &#62; &#39; &#34;">'
-if [[ $(grep "$authortest" $testpage) ]]
+if [[ $(grep "$authortest" "$testpage") ]]
 then
         echo "SUCCESS!"
 else
@@ -51,14 +51,14 @@ else
         echo "$authortest"
         echo "==========="
         echo "Full line that contains a discrepancy:"
-        echo "$(grep '<meta name="author"' $testpage | head -1)"
+        echo "$(grep '<meta name="author"' "$testpage" | head -1)"
         exit 1
 fi
 echo ""
 
 echo "Testing to ensure that the description is rendering as it should..."
 descriptiontest='<meta name="description" content="This post tests if we are properly filtering XML reserved characters in page metadata &#38; &#60; &#62; &#39; &#34;">'
-if [[ $(grep "$descriptiontest" $testpage) ]]
+if [[ $(grep "$descriptiontest" "$testpage") ]]
 then
         echo "SUCCESS!"
 else
@@ -68,6 +68,6 @@ else
         echo "$descriptiontest"
         echo "==========="
         echo "Full line that contains a discrepancy:"
-        echo "$(grep '<meta name="description"' $testpage | head -1)"
+        echo "$(grep '<meta name="description"' "$testpage" | head -1)"
         exit 1
 fi
