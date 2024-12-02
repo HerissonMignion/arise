@@ -15,12 +15,12 @@
 
 evaluate_inline() (
 
-evaluation_source=$(basename $1)
-cd $(dirname $1)
+	evaluation_source=$(basename "$1")
+	cd "$(dirname "$1")"
 
-while grep "<pre>sh#" $evaluation_source
-do
-        replacement=$(bash <<< $(sed -n -e s$'\001''<pre>sh#\(.*\)</pre>'$'\001''\1'$'\001''p' < $evaluation_source | head -1))
-        awk 'NR==1,/<pre>sh#.*<\/pre>/{sub(/<pre>sh#.*<\/pre>/, "'"$replacement"'")}{print >"'"$evaluation_source"'"}' $evaluation_source || break
-done
+	while grep "<pre>sh#" "$evaluation_source"
+	do
+        replacement=$(bash <<< $(sed -n -e s$'\001''<pre>sh#\(.*\)</pre>'$'\001''\1'$'\001''p' < "$evaluation_source" | head -1))
+        awk 'NR==1,/<pre>sh#.*<\/pre>/{sub(/<pre>sh#.*<\/pre>/, "'"$replacement"'")}{print >"'"$evaluation_source"'"}' "$evaluation_source" || break
+	done
 )

@@ -9,5 +9,5 @@
 # build_footer destination.html
 
 build_footer() {
-        cat $config/footer.html >> $1
+    cat "$config"/footer.html >> "$1"
 }

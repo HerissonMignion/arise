@@ -33,7 +33,7 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Build Arise
-        run: bash arise build
+        run: bash arise
     
       - name: Run test suite
         run: bash ci/xml-reserved-characters.sh

@@ -44,7 +44,7 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Build Arise
-        run: bash arise build
+        run: bash arise
     
       - name: Push to live branch
         uses: s0/git-publish-subdir-action@develop

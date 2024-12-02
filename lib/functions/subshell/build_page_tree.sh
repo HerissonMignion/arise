@@ -11,12 +11,13 @@
 # build_page /path/to/arise-out/
 
 build_page_tree() (
-cd $1
+	cd "$1"
 
-find . -type f -name "index.md" -not \( -path ./config -prune \) | while read fname; do
-build_page $fname
+	find . -type f -name "index.md" -not \( -path ./config -prune \) -print0 | \
+		while read -r -d $'\0' fname; do
+			build_page "$fname"
 
-# Add the source file to the list of files to remove in cleanup
-echo "$(realpath $fname)" >> $removelist
-done
+			# Add the source file to the list of files to remove in cleanup
+			echo "$(realpath "$fname")" >> "$removelist"
+		done
 )

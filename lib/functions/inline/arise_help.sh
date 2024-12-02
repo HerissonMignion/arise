@@ -9,29 +9,63 @@
 # arise_help
 
 arise_help() {
-cat <<EOF
-Arise, v$arise_version
+	echo "Version $arise_version"
 
-Welcome to Arise, a static site generator written in Bash
+	cat <<"HELP"
+NAME
 
-Usage: 
-------
-bash arise build -[k][f] 
-        # Builds the entire site
-        available in all build modes:
-                -k: Keeps source files in output
-                -f: Force overwrite pre-existing output
-bash arise -[p|s|r][k][f]
-        # Builds only specific parts of the site
-        # Useful for testing purposes
-        mutually exclusive options:
-                -p: Build pages only mode
-                -s: Build sitemap only mode
-                -r: Build rss only mode
+	arise, a static site generator written in Bash
 
-------
-Please visit GitHub for more detailed info: 
-https://github.com/spectrasecure/arise
+SYNOPSIS
 
-EOF
+	arise [<options>]...
+
+	Options must be given separately (e.g. "arise -f -k".)
+
+DESCRIPTION
+
+	Arise copies the "arise-source" directory into "arise-out", then
+	processes recursively the "arise-out" directory, converting
+	"index.md" files into html files, following documented behavior.
+	As a result, Arise is a static site generator.
+
+OPTIONS
+
+	Options Relating to the Build
+
+		*Note that providing none of the following three options is
+		 equivalent to providing all three.
+
+		-p, --pages
+
+			Generate the html pages.
+
+		-s, --sitemap
+
+			Generate the site map.
+
+		-r, --rss
+
+			Generate the rss feed.
+
+	Other Options
+
+		-h, --help
+
+			Print this help message.
+
+		-f, --force
+
+			Overwrite the previous arise-out folder.
+
+		-k, --keep-source
+
+			After the build, do not remove source files from the
+			arise-out folder.
+
+			
+
+
+HELP
+	
 }
