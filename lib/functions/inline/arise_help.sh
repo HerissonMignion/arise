@@ -18,9 +18,9 @@ NAME
 
 SYNOPSIS
 
-	arise [<options>]...
+	arise build [<options>]...
 
-	Options must be given separately (e.g. "arise -f -k".)
+	Options must be given separately (e.g. "arise build -f -k".)
 
 DESCRIPTION
 
