@@ -120,7 +120,7 @@ while (($#)); do
 			exit 1
 			;;
 		(*)
-		    trailing_args+=("$arg")
+			trailing_args+=("$arg")
 			;;
 	esac
 done
