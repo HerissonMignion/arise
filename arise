@@ -49,18 +49,6 @@ for FILE in lib/functions/{subshell,inline}/*.sh; do
 done
 
 
-# Display help if no arguments are provided
-if [ "$#" -eq 0 ]; then
-    arise_help
-    exit 0
-fi
-
-# Ensure first argument is 'build' for default behaviour. Shift arguments and continue. 
-if [ "$1" != "build" ]; then
-    arise_help
-    exit 1
-fi
-shift
 
 
 # Display our pretty logo no matter what when the program is run :)
@@ -74,6 +62,31 @@ build_pages=0
 build_sitemap=0
 build_rss=0
 
+
+# first pass to separate options (-asdf becomes -a -s -d -f)
+trailing_args=()
+while (($#)); do
+	arg=$1
+	shift
+	case "$arg" in
+		(--?*)
+			trailing_args+=("$arg")
+			;;
+		(--)
+			trailing_args+=(--)
+			break
+			;;
+		(-*)
+			for letter in $(echo "${arg#-}" | grep -o .); do
+				trailing_args+=("-$letter")
+			done
+			;;
+		(*)
+			trailing_args+=("$arg")
+			;;
+	esac
+done
+set -- "${trailing_args[@]}" "$@"
 
 trailing_args=()
 while (($#)); do
@@ -112,6 +125,22 @@ while (($#)); do
 	esac
 done
 set -- "${trailing_args[@]}" "$@"
+
+
+# Display help if no arguments are provided
+if [ "$#" -eq 0 ]; then
+    arise_help
+    exit 0
+fi
+
+# Ensure first non-option argument is 'build' for default behaviour. Shift arguments and continue. 
+if [ "$1" != "build" ]; then
+    arise_help
+    exit 1
+fi
+shift
+
+
 
 if ! (($build_pages || $build_sitemap || $build_rss)); then
 	build_pages=1

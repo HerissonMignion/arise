@@ -20,8 +20,6 @@ SYNOPSIS
 
 	arise build [<options>]...
 
-	Options must be given separately (e.g. "arise build -f -k".)
-
 DESCRIPTION
 
 	Arise copies the "arise-source" directory into "arise-out", then
@@ -62,9 +60,6 @@ OPTIONS
 
 			After the build, do not remove source files from the
 			arise-out folder.
-
-			
-
 
 HELP
 	
