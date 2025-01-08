@@ -16,18 +16,6 @@ arise_version="1.1.0"
 
 cd "$SCRIPT_DIR"
 
-# Display help if no arguments are provided
-if [ "$#" -eq 0 ]; then
-    arise_help
-    exit 0
-fi
-
-# Ensure first argument is 'build' for default behaviour. Shift arguments and continue. 
-if [ "$1" != "build" ]; then
-    arise_help
-    exit 1
-fi
-shift
 
 # Set the site config directories. Don't touch this-- changing the config location is not supported at this time
 config="arise-out/config"
@@ -59,6 +47,21 @@ fi
 for FILE in lib/functions/{subshell,inline}/*.sh; do
 	source "$FILE"
 done
+
+
+# Display help if no arguments are provided
+if [ "$#" -eq 0 ]; then
+    arise_help
+    exit 0
+fi
+
+# Ensure first argument is 'build' for default behaviour. Shift arguments and continue. 
+if [ "$1" != "build" ]; then
+    arise_help
+    exit 1
+fi
+shift
+
 
 # Display our pretty logo no matter what when the program is run :)
 arise_logo
