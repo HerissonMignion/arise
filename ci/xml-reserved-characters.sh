@@ -10,7 +10,7 @@ echo ""
 echo ""
 
 echo "Testing to ensure the Arise site built the test suite page..."
-if [ -f "$testpage"" ] 
+if [ -f "$testpage" ] 
 then
         echo "SUCCESS!"
 else
