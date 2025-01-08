@@ -56,7 +56,7 @@ EOF
 				get_page_metadata "$page_index"
 
 				if [[ $rss_hide != "true" ]] && [[ $is_toc != "true" ]]; then
-					# Convert html's ISO8601 date to RSS's RFC-822. stupid RSS.
+					# Convert html's ISO8601 date to RSS's RFC-822. sometimes you need a stupid hack to fix an even stupider RFC decision 😐
 					rss_date=$(date -d "$published_date" --rfc-822)
 					
 					cat >> "$rss" <<EOF
